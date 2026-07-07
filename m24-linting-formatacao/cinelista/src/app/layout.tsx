@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Cinelista",
-  description: "No Cinelista, você encontra os títulos mais populares, em alta e melhor avaliados em um só lugar.",
+  description:
+    "No Cinelista, você encontra os títulos mais populares, em alta e melhor avaliados em um só lugar.",
 };
 
 export default function RootLayout({
@@ -16,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        <Header/>
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

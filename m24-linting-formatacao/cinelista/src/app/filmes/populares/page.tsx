@@ -1,5 +1,5 @@
 import Grid from "@/components/Grid";
-import Title from "@/components/Title"
+import Title from "@/components/Title";
 import { getPopular } from "@/lib/api/tmdb";
 
 export const revalidate = 60; // atualiza a cada 60s
@@ -13,13 +13,13 @@ export const revalidate = 60; // atualiza a cada 60s
 */
 
 const FilmesPopulares = async () => {
-    const filmes = await getPopular();
+  const filmes = await getPopular();
 
-    return (
-        <>
-            <Title title="Filmes Populares" />
-            <Grid filmes={filmes}/>
-        </>
-    );
-}
+  return (
+    <>
+      <Title title="Filmes Populares" />
+      <Grid filmes={filmes} />
+    </>
+  );
+};
 export default FilmesPopulares;

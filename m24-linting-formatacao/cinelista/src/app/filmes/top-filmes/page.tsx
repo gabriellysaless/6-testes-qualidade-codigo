@@ -1,8 +1,8 @@
 import Grid from "@/components/Grid";
-import Title from "@/components/Title"
+import Title from "@/components/Title";
 import { getTopRated } from "@/lib/api/tmdb";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 /* 
     Força a renderização estática.
     A página é gerada durante o build.
@@ -11,13 +11,13 @@ export const dynamic = 'force-static';
 */
 
 const TopFilmes = async () => {
-    const filmes = await getTopRated();
+  const filmes = await getTopRated();
 
-    return (
-        <>
-            <Title title="Top Filmes" />
-            <Grid filmes={filmes}/>
-        </>
-    );
-}
+  return (
+    <>
+      <Title title="Top Filmes" />
+      <Grid filmes={filmes} />
+    </>
+  );
+};
 export default TopFilmes;
