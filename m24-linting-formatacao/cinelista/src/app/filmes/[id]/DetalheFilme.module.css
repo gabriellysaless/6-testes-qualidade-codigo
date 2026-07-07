@@ -1,0 +1,46 @@
+.details {
+    padding: 40px;
+    max-width: 960px;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    gap: 32px;
+    background-color: #1F1F1F;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.image {
+    width: 300px;
+    height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px; 
+    color: #E50914;
+}
+
+.info p {
+    font-size: 1.05rem;
+    line-height: 1.6; 
+    color: #DDD;
+}
+
+.voltar {
+    display: block;
+    text-align: right;
+    margin-bottom: 24px;
+    color: #E50914;
+    font-weight: 500;
+}
