@@ -2,6 +2,7 @@ import { Filme } from "@/types/types";
 import styles from "./Card.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { useResumoFilmes } from "@/app/hooks/useResumoFilmes";
 
 type Props = {
   filme: Filme;
@@ -11,8 +12,7 @@ const Card = ({ filme }: Props) => {
   const { id, title, poster_path, overview, vote_average } =
     filme; /* Desestruturação para não precisar usar filme.algo */
 
-  const resume =
-    overview?.length >= 256 ? `${overview?.substring(0, 253)}...` : overview;
+  const resume = useResumoFilmes(overview, 256);
 
   return (
     <div key={id} className={styles.card}>

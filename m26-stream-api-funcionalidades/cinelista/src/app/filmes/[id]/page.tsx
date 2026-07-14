@@ -56,6 +56,8 @@ const DetalheFilme = async ({ params }: Props) => {
             <Image
               className={styles.image}
               src={`${process.env.NEXT_PUBLIC_TMDB_API_IMG_URL}${poster_path}`}
+              width={300}
+              height={400}
               alt={`Poster do filme ${title}`}
             />
           </figure>
