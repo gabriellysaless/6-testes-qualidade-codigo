@@ -14,6 +14,7 @@ test("Exibe o título 'Filmes em Destaque' na página inicial corretamente", asy
 
     render(await Home());
 
+    // screen.getByText procuram imediatamente no DOM, não precisa do await
     expect(screen.getByText(titulo)).toBeInTheDocument();
 })
 
@@ -38,5 +39,8 @@ test("Exibir uma mensagem quando não houver filmes disponíveis", async () => {
 
     render(await Home());
 
+    // screen.findByText retorna uma Promise, esperando até que o elemento apareça no DOM. Por isso utilizamos o await
     expect(await screen.findByText("Nenhum filme encontrado.")).toBeInTheDocument();
+    
+    // O elemento "Nenhum filme encontrado." só aparece após a conclusão da chamada assíncrona dos filmes
 });
