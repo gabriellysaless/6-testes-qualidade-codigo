@@ -8,7 +8,11 @@ export default async function Home() {
   return (
     <>
       <Title title="Filmes em Destaque" />
-      <Grid filmes={filmes} />
+      {filmes && filmes.length > 0 ? (
+        <Grid filmes={filmes} />
+      ) : (
+        <p>Nenhum filme encontrado.</p>
+      )}
     </>
   );
 }

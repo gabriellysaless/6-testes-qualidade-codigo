@@ -16,3 +16,27 @@ test("Exibe o título 'Filmes em Destaque' na página inicial corretamente", asy
 
     expect(screen.getByText(titulo)).toBeInTheDocument();
 })
+
+test("Renderiza os filmes em destaque corretamente", async () => {
+    (getTrendingMovies as jest.Mock).mockResolvedValue([
+        {
+            id:1,
+            title: "Filme teste",
+            overview: "Resumo teste",
+            poster_path: "public/next.svg",
+            vote_average: 8.0,
+        },
+    ]);
+    // Renderiza a página (internamente chama a função getTrendingMovies)
+    render(await Home());
+    // Verifica se o título renderizado aparece na tela
+    expect(await screen.findByText("Filme teste")).toBeInTheDocument();
+});
+
+test("Exibir uma mensagem quando não houver filmes disponíveis", async () => {
+    (getTrendingMovies as jest.Mock).mockResolvedValue([]);
+
+    render(await Home());
+
+    expect(await screen.findByText("Nenhum filme encontrado.")).toBeInTheDocument();
+});
