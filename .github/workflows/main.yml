@@ -1,1 +1,64 @@
+# Nome do workflow que vai aparecer no "Actions"
+name: Pipeline CI/CD
+run-name: ${{ github.actor }} is learning GitHub Actions
+# Definir quando o Pipeline será disparado
+on: 
+  push:
+    branches:
+      - main
+    paths: # só dispara se arquivos nessa pasta mudarem
+      - "src/**" # só mudanças no código fonte
+      - ".github/workflows/**" # mudanças nos próprios pipelines
+  workflow_dispatch: # habilitar "run workflow" no GitHub Actions
+  
+jobs:
+  # Primeiro job: build
+  build:
+    runs-on: ubuntu-latest #Imagem da máquina usada no CI
+    
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v6
+        
+      - name: Instalação do Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
 
+      - name: Instalação das Dependências
+        run: 
+          cd m27-testes-integracao-react-next/cinelista
+          npm install
+
+      - name: Rodar o Build
+        run: npm run build
+        env: 
+          TMDB_API_URL: ${{ vars.TMDB_API_URL }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          NEXT_PUBLIC_TMDB_API_IMG_URL: ${{ vars.NEXT_PUBLIC_TMDB_API_IMG_URL }}
+
+  # Segundo job: tests
+  tests:
+    runs-on: ubuntu-latest #Imagem da máquina usada no CI
+    needs: build
+    
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v6
+        
+      - name: Instalação do Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Instalação das Dependências
+        run: npm install
+
+      - name: Rodar lint
+        run: npm run lint
+
+      - name: Verificar format
+        run: npm run format -- -- check
+
+      - name: Rodar testes
+        run: npm run test
