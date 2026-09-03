@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths: # só dispara se arquivos nessa pasta mudarem
-      - "src/**" # só mudanças no código fonte
+      - "m27-testes-integracao-react-next/cinelista/**"
       - ".github/workflows/**" # mudanças nos próprios pipelines
   workflow_dispatch: # habilitar "run workflow" no GitHub Actions
   
@@ -26,12 +26,12 @@ jobs:
           node-version: '24'
 
       - name: Instalação das Dependências
-        run: 
-          cd m27-testes-integracao-react-next/cinelista
-          npm install
+        run: npm install
+        working-directory: m27-testes-integracao-react-next/cinelista # executa o comando dentro da pasta
 
       - name: Rodar o Build
         run: npm run build
+        working-directory: m27-testes-integracao-react-next/cinelista
         env: 
           TMDB_API_URL: ${{ vars.TMDB_API_URL }}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -53,12 +53,16 @@ jobs:
 
       - name: Instalação das Dependências
         run: npm install
+        working-directory: m27-testes-integracao-react-next/cinelista
 
       - name: Rodar lint
         run: npm run lint
+        working-directory: m27-testes-integracao-react-next/cinelista
 
       - name: Verificar format
         run: npm run format -- -- check
+        working-directory: m27-testes-integracao-react-next/cinelista
 
       - name: Rodar testes
         run: npm run test
+        working-directory: m27-testes-integracao-react-next/cinelista
