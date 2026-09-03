@@ -60,7 +60,7 @@ jobs:
         working-directory: m27-testes-integracao-react-next/cinelista
 
       - name: Verificar format
-        run: npm run format -- -- check
+        run: npm run format -- --check
         working-directory: m27-testes-integracao-react-next/cinelista
 
       - name: Rodar testes
